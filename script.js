@@ -5,16 +5,29 @@ function showTime() {
     let minute = date.getMinutes();
     let second = date.getSeconds()
     let dayNight = 'AM';
+ 
 
+    if(hour >= 12) {
+        dayNight = 'PM';
+    } else {
+        dayNight = 'AM';
+    }
     
-    hour = hour < 10 ? '0' + hour : hour;
-
-    minute = minute < 10 ? '0' + minute : minute;
-
-    second = second < 10 ? '0' + second : second;
+    check(hour);
+    check(minute);
+    check(second);
 
     display.innerHTML = `${hour} : ${minute} : ${second} ${dayNight}`
 
 }
 
+function check(time) {
+    if(time < 10) {
+        time = '0' + time
+    }
+}
+
+showTime()
+
 setInterval(showTime, 1000);
+
