@@ -4,28 +4,38 @@ function showTime() {
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds()
-    let dayNight = 'AM';
- 
 
-    if(hour >= 12) {
-        dayNight = 'PM';
-    } else {
-        dayNight = 'AM';
-    }
     
-    check(hour);
-    check(minute);
-    check(second);
+    hour = addZero(hour);
+    minute = addZero(minute);
+    second = addZero(second);
+    let formatHour = addFormat(hour)
 
-    display.innerHTML = `${hour} : ${minute} : ${second} ${dayNight}`
+    display.innerHTML = `${hour} : ${minute} : ${second} ${formatHour}`
 
 }
 
-function check(time) {
-    if(time < 10) {
-        time = '0' + time
+function addFormat(time) {
+    let format = 'AM';
+    if(time >= 12) {
+        format = 'PM';
+    }
+    return format;
+}
+
+function checkTime(time) {
+    if(time > 12) {
+        time = time - 12;
     }
 }
+
+function addZero(time) {
+    if(time < 10) {
+       time = '0' + time;
+    }
+    return time
+}
+
 
 showTime()
 
