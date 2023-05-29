@@ -9,7 +9,8 @@ function showTime() {
     hour = addZero(hour);
     minute = addZero(minute);
     second = addZero(second);
-    let formatHour = addFormat(hour)
+    let formatHour = addFormat(hour);
+    hour = checkTime(hour)
 
     display.innerHTML = `${hour} : ${minute} : ${second} ${formatHour}`
 
@@ -27,6 +28,12 @@ function checkTime(time) {
     if(time > 12) {
         time = time - 12;
     }
+
+    if(time === 0) {
+        time = 12;
+    }
+
+    return time;
 }
 
 function addZero(time) {
